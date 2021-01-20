@@ -1,0 +1,79 @@
+version: "3.7"
+services:
+  cp_php:
+    build: ./conf/php-fpm
+    container_name: ${PROJECT_NAME}_php
+    restart: ${RESTART_CONTAINER}
+    user: "${UID}:${GID}"
+    ports:
+      - 9000
+    environment:
+      APP_ROOT_DIR: /var/www/coffeepid/releases/current/public
+      APPLICATION_ENV: ${APPLICATION_ENV}
+      DB_HOST: ${MYSQL_HOST}
+      DB_USER: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+      DB_PORT: ${MYSQL_PORT}
+      DB_DATABASE_NAME: ${MYSQL_DATABASE_NAME}
+      UID: ${UID}
+      GID: ${GID}
+    volumes:
+      - cp-project-data:/var/www/coffeepid/releases/current:nocopy
+    networks:
+      - web
+      - projectintern
+
+  cp_nginx:
+    build: ./conf/nginx
+    container_name: ${PROJECT_NAME}_nginx
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.cp_nginx.rule=Host(`${NGINX_VIRTUAL_HOST}`)
+    restart: ${RESTART_CONTAINER}
+    ports:
+      - 80
+    environment:
+      NGINX_HOST: cp_php
+      VIRTUAL_HOST: ${NGINX_VIRTUAL_HOST}
+      NGINX_SERVER_NAME: ${NGINX_VIRTUAL_HOST}
+      NGINX_ERROR_LOG: ${NGINX_ERROR_LOG}
+      NGINX_ACCESS_LOG: ${NGINX_ACCESS_LOG}
+      NGINX_ROOT_DIR: /var/www/coffeepid/releases/current/public
+      UID: ${UID}
+      GID: ${GID}
+    links:
+      - cp_php
+    volumes:
+      - cp-project-data:/var/www/coffeepid/releases/current
+    networks:
+      - web
+
+  cp_db:
+    image: mysql:5.7
+    container_name: ${PROJECT_NAME}_db
+    restart: ${RESTART_CONTAINER}
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE_NAME}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - 3306
+    links:
+      - cp_php
+    volumes:
+      - cp_db-data:/var/lib/mysql
+    networks:
+      - projectintern
+
+volumes:
+  cp-project-data:
+    name: "${PROJECT_NAME}-project-data"
+  cp_db-data:
+    name: "${PROJECT_NAME}-db"
+
+networks:
+  web:
+    external: true
+  projectintern:
+    name: "${PROJECT_NAME}-intern-network"

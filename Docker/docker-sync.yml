@@ -1,0 +1,13 @@
+version: '2'
+options:
+  verbose: true
+syncs:
+  ${PROJECT_NAME}-unision-sync:
+    src: ${PATH_TO_PROJECT}
+    sync_strategy: 'native_osx'
+    sync_excludes: ['Path .git', 'Path .idea', 'Path http_requests', 'Path docker', 'Path Docker', 'Name .DS_Store', 'Name current.sql', 'Name node_modules' ]
+    sync_excludes_type: 'none'
+    sync_userid: '82'
+    sync_groupid: '82'
+    sync_args:
+      - "-prefer newer"

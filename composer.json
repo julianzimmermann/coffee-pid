@@ -1,0 +1,139 @@
+{
+    "name": "julianzimmer/coffee-pid",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Julian Zimmermann",
+            "email": "info@julianzimmermann.dev"
+        }
+    ],
+    "repositories": [
+        {
+            "name": "jzit/kernel",
+            "type":"vcs",
+            "packagist.org": false,
+            "url":"https://github.com/jzit-php/kernel"
+        },
+        {
+            "name": "jzit/container",
+            "type":"vcs",
+            "packagist.org": false,
+            "url":"https://github.com/jzit-php/container"
+        },
+        {
+            "name": "jzit/config",
+            "type":"vcs",
+            "packagist.org": false,
+            "url":"https://github.com/jzit-php/config"
+        },
+        {
+            "name": "jzit/application",
+            "type":"vcs",
+            "packagist.org": false,
+            "url":"https://github.com/jzit-php/application"
+        },
+        {
+            "name": "jzit/http",
+            "type":"vcs",
+            "packagist.org": false,
+            "url":"https://github.com/jzit-php/http"
+        },
+        {
+            "name": "jzit/db",
+            "type":"vcs",
+            "packagist.org": false,
+            "url":"https://github.com/jzit-php/db"
+        },
+        {
+            "name": "jzit/pid-api",
+            "type":"vcs",
+            "packagist.org": false,
+            "url":"https://github.com/jzit-php/pid-api"
+        },
+        {
+            "name": "jzit/pid",
+            "type":"vcs",
+            "packagist.org": false,
+            "url":"https://github.com/jzit-php/pid"
+        },
+        {
+            "name": "jzit/serializer",
+            "type":"vcs",
+            "packagist.org": false,
+            "url":"https://github.com/jzit-php/serializer"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "~6.3.3",
+        "jzit/application": "dev-master",
+        "jzit/config": "dev-master",
+        "jzit/container": "dev-master",
+        "jzit/db": "dev-master",
+        "jzit/http": "dev-master",
+        "jzit/kernel": "dev-master",
+        "jzit/pid": "dev-master",
+        "jzit/pid-api": "dev-master",
+        "jzit/serializer": "dev-master",
+        "league/route": "~4.3.1",
+        "monolog/monolog": "~2.0.0",
+        "phpdocumentor/reflection-docblock": "~4.3.2",
+        "symfony/console": "~4.3.3",
+        "symfony/filesystem": "~4.3.3",
+        "symfony/finder": "~4.3.3",
+        "symfony/lock": "~4.3.3",
+        "symfony/process": "~4.3.3",
+        "symfony/property-access": "~4.3.3",
+        "symfony/property-info": "~4.3.3",
+        "symfony/serializer": "~4.3.3",
+        "twig/twig": "~2.12.1",
+        "zendframework/zend-httphandlerrunner": "~1.1.0"
+    },
+    "require-dev": {
+        "codeception/codeception": "~3.1.2",
+        "mikey179/vfsstream": "~1.6.7",
+        "php-coveralls/php-coveralls": "~2.1.0",
+        "phpmd/phpmd": "~2.7.0",
+        "phpro/grumphp": "~0.16.1",
+        "phpstan/phpstan": "~0.11.2",
+        "roave/security-advisories": "dev-master as 1.0.0",
+        "sebastian/phpcpd": "~4.1.0",
+        "sllh/composer-versions-check": "~2.0.3",
+        "squizlabs/php_codesniffer": "~3.5.2"
+    },
+    "bin": [
+        "bin/console"
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "preferred-install": {
+            "*": "dist",
+            "jzit/*": "source"
+        },
+        "platform": {
+            "php": "7.3.11"
+        },
+        "use-include-path": true,
+        "sort-packages": true,
+        "github-protocols": [
+            "https"
+        ],
+        "process-timeout": 900
+    },
+    "autoload": {
+        "psr-0": {"": "src/Generated/Orm/Entities"},
+        "psr-4": {
+            "JzIT\\": "src/JzIT",
+            "Generated\\": "src/Generated"
+        }
+    },
+    "autoload-dev": {
+        "psr-0": {"": "src/Generated/Orm/Entities"},
+        "psr-4": {
+            "JzIT\\": "tests/JzIT",
+            "Generated\\": "src/Generated"
+        }
+    }
+}

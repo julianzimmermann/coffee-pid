@@ -1,0 +1,21 @@
+map ${ESC}http_host ${ESC}application_env {
+    ~*dev\..* development;
+    ~*stag(e|ing)\..* staging;
+    ~*(prod|www)\..* production;
+}
+
+server {
+    server_name ${NGINX_SERVER_NAME} *.${NGINX_SERVER_NAME};
+    error_log  ${NGINX_ERROR_LOG};
+    access_log ${NGINX_ACCESS_LOG};
+    root ${NGINX_ROOT_DIR};
+
+    location / {
+        add_header X-Server ${ESC}hostname;
+        fastcgi_pass cp_php:9000;
+        fastcgi_index index.php;
+        include /etc/nginx/fastcgi_params;
+        fastcgi_param SCRIPT_NAME /index.php;
+        fastcgi_param SCRIPT_FILENAME  ${ESC}document_root/index.php;
+    }
+}

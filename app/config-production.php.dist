@@ -1,0 +1,4 @@
+<?php
+
+use JzIT\Db\DbConstants;
+use \JzIT\Kernel\KernelConstants;

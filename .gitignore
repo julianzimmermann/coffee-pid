@@ -1,0 +1,14 @@
+.idea
+
+.DS_Store
+
+#src/Generated
+app/config-default.php
+app/config-staging.php
+app/config-production.php
+http_requests/http-client.env.json
+docker/.env
+docker/.docker-sync/*
+var/log/*
+vendor
+composer.phar

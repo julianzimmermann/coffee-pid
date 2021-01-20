@@ -1,0 +1,20 @@
+<?php
+
+use JzIT\Db\DbConstants;
+use \JzIT\Kernel\KernelConstants;
+
+$config[KernelConstants::ENVIRONMENT] = \getenv('APPLICATION_ENV');
+$config[KernelConstants::IS_DEV_MODE] = $config[KernelConstants::ENVIRONMENT] === KernelConstants::ENVIRONMENT_DEVELOPMENT;
+
+$dbHost = \getenv('DB_HOST');
+$dbUser = \getenv('DB_USER');
+$dbPass = \getenv('DB_PASSWORD');
+$dbPort = \getenv('DB_PORT');
+$dbName = \getenv('DB_DATABASE_NAME');
+
+// ---------- DATABASE
+$config[DbConstants::DB_HOST] = $dbHost;
+$config[DbConstants::DB_USER] =  $dbUser;
+$config[DbConstants::DB_PASSWORD] = $dbPass;
+$config[DbConstants::DB_PORT] = $dbPort;
+$config[DbConstants::DB_DATABASE_NAME] = $dbName;
