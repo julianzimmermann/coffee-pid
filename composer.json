@@ -61,6 +61,12 @@
             "type":"vcs",
             "packagist.org": false,
             "url":"https://github.com/jzit-php/serializer"
+        },
+        {
+            "name": "jzit/blynk-registration",
+            "type":"vcs",
+            "packagist.org": false,
+            "url":"https://github.com/jzit-php/blynk-registration"
         }
     ],
     "require": {
@@ -75,6 +81,7 @@
         "jzit/kernel": "dev-master",
         "jzit/pid": "dev-master",
         "jzit/pid-api": "dev-master",
+        "jzit/blynk-registration": "dev-main",
         "jzit/serializer": "dev-master",
         "league/route": "~4.3.1",
         "monolog/monolog": "~2.0.0",
